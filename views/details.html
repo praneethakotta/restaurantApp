@@ -1,0 +1,44 @@
+
+    <div class="container">
+        <div class="row row-content" ng-controller="DishDetailController">
+            <div class="col-xs-12">
+                <button class="btn btn-xs btn-primary pull-right"
+                    type="button" ui-sref="app.menu">
+                    Back to Menu
+                </button>
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                        <img class="media-object img-thumbnail"
+                         ng-src={{dish.image}} alt="Uthappizza">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{dish.name}}
+                         <span class="label label-danger">{{dish["label"]}}</span>
+                         <span class="badge">{{dish.price | currency}}</span></h2>
+                        <p>{{dish["description"]}}</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9 col-xs-offset-1">
+                 <h1><small style="color:#000000">Customer Comments</small>
+                    <span><small style="font-size: 18px">Sort by:</small></span>
+                    <span><input style="width:120px;height:25px;font-size: 12px " type="text" 
+                                 ng-model="storeVal" ng-change="checkString(storeVal)"></span>
+                </h1>
+                 <ul class="media-list ">
+                    <li class="media" ng-repeat="comment in dish.comments | orderBy:filtText">
+                        <p>
+                            <blockquote
+                                <p>{{comment.rating}} Stars</p>
+                                <p>{{comment.comment}}</p>
+                                <footer>{{comment.author}}, {{comment.date | date:'mediumDate'}}</footer>
+                            </blockquote>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+ </div>
